@@ -1,5 +1,7 @@
 import { createContext, useEffect, useReducer} from 'react';
 
+import {createAction} from '../utils/reducer/reducer.utils';
+
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from '../utils/firebase/firebase.utils';
 
 // as the actual value you want to access
@@ -21,7 +23,7 @@ const userReducer = (state, action) => {
         case'SET_CURRENT_USER':
             return {
                 ...state,
-                currenntUser: payload
+                currentUser: payload
             }
         default: 
             throw new Error(`Unhandled type ${type} in userReducer`)
@@ -54,13 +56,3 @@ export const UserProvider = ({ children }) => {
 
     return <UserContext.Provider value={value}>{children}</UserContext.Provider>
 }
-
-/*
-
-const userReducer = (state, action) => {
-    return {
-        currentUser: 
-    }
-}
-
-*/
